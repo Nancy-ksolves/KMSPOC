@@ -22,9 +22,27 @@ public class BookController {
     }
     // get all books
 
-    @GetMapping
+    @GetMapping()
     public Flux<Book> getAll(){
         return bookService.getAll();
     }
+
+    //get single book
+    @GetMapping("/{bookId}")
+    public Mono<Book> get(@PathVariable int bookId){
+        return bookService.get(bookId);
+    }
+
+    @PutMapping("/{bookId}")
+    public Mono<Book> update(@RequestBody Book book,@PathVariable int bookId){
+        return bookService.update(book,bookId);
+    }
+
+    @DeleteMapping("/{bookId}")
+    public Mono<Void> delete(@PathVariable int bookId){
+        return bookService.delete(bookId);
+    }
+
+
 
 }
